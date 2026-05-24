@@ -1,0 +1,6 @@
+{
+  "name": "Astrobiology Lab - Prebiotic Thermodynamics Sandbox",
+  "description": "An interactive data journalism piece and telemetry dashboard simulating cosmological constant fine-tuning and prebiotic thermodynamics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
