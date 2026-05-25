@@ -28,7 +28,7 @@ export interface SimulationResult {
   scientificString: string;
   isStableUniverse: boolean;
   isLifePossible: boolean;
-  status: 'COLLAPSE' | 'DECAY' | 'STERILE' | 'IMPOSSIBLE' | 'EXTREMELY_RARE' | 'VIABLE';
+  status: 'COLLAPSE' | 'DECAY' | 'STERILE' | 'THERMODYNAMIC_COLLAPSE' | 'HIGHLY_CONSTRAINED' | 'SYSTEM_VIABLE';
   telemetryLog: string;
 }
 
@@ -86,19 +86,19 @@ export function calculateSimulation(physics: PhysicsState, chem: ChemistryState,
     status = 'STERILE';
     logStr = t.thermalExceeded(tFactor);
   } else if (total_log10 < -50) {
-    status = 'IMPOSSIBLE';
-    logStr = t.belowBorel;
+    status = 'THERMODYNAMIC_COLLAPSE';
+    logStr = t.thermoCollapse;
   } else if (total_log10 >= -50 && total_log10 < -15) {
-    status = 'EXTREMELY_RARE';
+    status = 'HIGHLY_CONSTRAINED';
     isLifePossible = true;
-    logStr = t.statAnomaly;
+    logStr = t.highlyConstrained;
   } else {
-    status = 'VIABLE';
+    status = 'SYSTEM_VIABLE';
     isLifePossible = true;
-    logStr = t.stableBio;
+    logStr = t.systemViable;
   }
 
-  if (isLifePossible || status === 'IMPOSSIBLE' || status === 'EXTREMELY_RARE') {
+  if (isLifePossible || status === 'THERMODYNAMIC_COLLAPSE' || status === 'HIGHLY_CONSTRAINED') {
     if (chem.autocatalysis >= 0.1) logStr += ' ' + t.autocatalysisLog;
     if (chem.thermalCycles >= 5) logStr += ' ' + t.thermalLog;
     if (chem.confinementLog >= 1) logStr += ' ' + t.confinementLogMsg;

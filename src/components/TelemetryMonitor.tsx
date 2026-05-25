@@ -13,10 +13,10 @@ export const TelemetryMonitor = () => {
     switch (sim?.status) {
       case 'COLLAPSE': 
       case 'DECAY': 
-      case 'IMPOSSIBLE': return 'text-red-500 border-red-500/20 bg-red-950/20';
-      case 'EXTREMELY_RARE': return 'text-amber-500 border-amber-500/20 bg-amber-950/20';
+      case 'THERMODYNAMIC_COLLAPSE': return 'text-red-500 border-red-500/20 bg-red-950/20';
+      case 'HIGHLY_CONSTRAINED': return 'text-amber-500 border-amber-500/20 bg-amber-950/20';
       case 'STERILE': return 'text-slate-400 border-slate-700 bg-slate-900/50';
-      case 'VIABLE': return 'text-cyan-400 border-cyan-500/30 bg-cyan-950/30';
+      case 'SYSTEM_VIABLE': return 'text-cyan-400 border-cyan-500/30 bg-cyan-950/30';
       default: return 'text-slate-500 bg-slate-900 border-slate-800';
     }
   };
@@ -27,14 +27,14 @@ export const TelemetryMonitor = () => {
       {/* Probability Display */}
       <div className={`backdrop-blur-md border px-5 py-4 rounded-sm flex flex-col items-end gap-1 min-w-[280px] shadow-2xl ${getStatusColor()}`}>
          <div className="text-[10px] font-bold tracking-widest uppercase opacity-70 mb-1 flex items-center gap-2">
-            {sim?.status === 'COLLAPSE' || sim?.status === 'DECAY' || sim?.status === 'IMPOSSIBLE' ? <ShieldAlert className="w-3 h-3" /> : <Activity className="w-3 h-3" />}
+            {sim?.status === 'COLLAPSE' || sim?.status === 'DECAY' || sim?.status === 'THERMODYNAMIC_COLLAPSE' ? <ShieldAlert className="w-3 h-3" /> : <Activity className="w-3 h-3" />}
             {t.systemStatus}: {sim?.status ? tSim[sim.status] : t.boot}
          </div>
          <div className="font-mono text-3xl font-light tracking-tight">
-           P = {sim?.scientificString}
+           P_polymer = {sim?.scientificString}
          </div>
          <div className="font-mono text-[10px] opacity-50 mt-1">
-           p_life = f(C_phys, ΔG, T)^N
+           P_polymer = f(ΔG, T, C_conf, α)^N
          </div>
       </div>
 

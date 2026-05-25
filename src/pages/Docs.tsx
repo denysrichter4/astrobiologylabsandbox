@@ -45,28 +45,21 @@ export const Docs = () => {
              </section>
 
              <section className="flex flex-col gap-4">
-               <h3 className="text-xl font-bold text-slate-100 uppercase tracking-widest text-sm">{t.fineTuning}</h3>
+               <h3 className="text-xl font-bold text-slate-100 uppercase tracking-widest text-sm">{t.kinetic}</h3>
                <p className="text-slate-400 leading-relaxed">
-                 {renderText(t.fineTuningText1)}
+                 {renderText(t.kineticText1)}
                </p>
                <div className="my-2 px-6 py-6 bg-slate-900/50 rounded-lg text-center overflow-x-auto border border-slate-800 text-cyan-400 shadow-inner">
-                  <BlockMath math="P_{FT} = e^{-k \sum (C_i - C_{opt})^2}" />
+                  <BlockMath math="P_{bond} = e^{-\frac{\Delta G}{R \cdot T}} \cdot P_{geometry}" />
                </div>
                <p className="text-slate-400 leading-relaxed">
-                 {renderText(t.fineTuningText2)}
-               </p>
-             </section>
-
-             <section className="flex flex-col gap-4">
-               <h3 className="text-xl font-bold text-slate-100 uppercase tracking-widest text-sm">{t.combinatorics}</h3>
-               <p className="text-slate-400 leading-relaxed">
-                 {renderText(t.combinatoricsText1)}
+                 {renderText(t.kineticText2)}
                </p>
                <div className="my-2 px-6 py-6 bg-slate-900/50 rounded-lg text-center overflow-x-auto border border-slate-800 text-cyan-400 shadow-inner">
-                  <BlockMath math="P_{chem} = \left( e^{-\frac{\Delta G}{R \cdot T}} \right)^N" />
+                  <BlockMath math="P_{linear} = (P_{bond})^N" />
                </div>
                <p className="text-slate-400 leading-relaxed">
-                 {renderText(t.combinatoricsText2)}
+                 {renderText(t.kineticText3)}
                </p>
              </section>
              
@@ -80,6 +73,9 @@ export const Docs = () => {
                   <li>{renderText(t.accelerators2)}</li>
                   <li>{renderText(t.accelerators3)}</li>
                </ul>
+               <p className="text-slate-400 leading-relaxed mt-2">
+                 {renderText(t.acceleratorsOutro)}
+               </p>
                <div className="my-2 px-6 py-6 bg-slate-900/50 rounded-lg text-center overflow-x-auto border border-slate-800 text-cyan-400 shadow-inner">
                   <BlockMath math="P_{final} = \min\left(1.0, \, \left[e^{-\frac{\Delta G}{R \cdot T}} \cdot P_{geometry} \cdot C_{conf}\right]^N \cdot (1 + \alpha)^{\frac{N}{10}} \cdot 2^\phi\right)" />
                </div>

@@ -54,14 +54,13 @@ export const LogTerminal = () => {
         {localLogs.map((log) => (
           <div key={log.id} className="flex gap-3 leading-relaxed hover:bg-slate-900/30 px-1 -mx-1 transition-colors">
              <span className="text-slate-600 shrink-0">[{log.time}]</span>
-             <span className={`${log.status === 'COLLAPSE' || log.status === 'DECAY' || log.status === 'IMPOSSIBLE' ? 'text-red-900' : 'text-slate-500'}`}>
+             <span className={`${log.status === 'COLLAPSE' || log.status === 'DECAY' || log.status === 'THERMODYNAMIC_COLLAPSE' ? 'text-red-900' : 'text-slate-500'}`}>
                 &gt;
              </span>
              <span className={`break-words ${
-                log.status === 'OPTIMAL' ? 'text-emerald-400 font-semibold' :
-                log.status === 'VIABLE' ? 'text-cyan-400' :
-                log.status === 'EXTREMELY_RARE' ? 'text-amber-500' :
-                log.status === 'COLLAPSE' || log.status === 'IMPOSSIBLE' ? 'text-red-500' : 
+                log.status === 'SYSTEM_VIABLE' ? 'text-cyan-400' :
+                log.status === 'HIGHLY_CONSTRAINED' ? 'text-amber-500' :
+                log.status === 'COLLAPSE' || log.status === 'THERMODYNAMIC_COLLAPSE' ? 'text-red-500' : 
                 'text-slate-400'
              }`}>
                {log.text}
